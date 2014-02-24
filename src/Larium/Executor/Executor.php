@@ -10,7 +10,7 @@ class Executor
 
     public function addCommand($state, $command, $priority = 0)
     {
-        if (!this->hasState(state)) {
+        if (!$this->hasState($state)) {
             $this->commands[$state] = new \SplPriorityQueue();
         }
 
