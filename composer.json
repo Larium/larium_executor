@@ -1,5 +1,5 @@
 {
-    "name": "larium/routing",
+    "name": "larium/executor",
     "description": "Implementation of mediator design pattern.",
     "type": "library",
     "license": "MIT",
