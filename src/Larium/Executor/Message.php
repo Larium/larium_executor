@@ -10,11 +10,11 @@ class Message
 
     public function getExecutor()
     {
-        return $this->mediator;
+        return $this->executor;
     }
 
     public function setExecutor(Executor $executor)
     {
-        $this->mediator = $executor;
+        $this->executor = $executor;
     }
 }
