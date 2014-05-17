@@ -8,7 +8,22 @@ class MyCommand
 {
     public function execute($message)
     {
-        print_r($message);
+        $message->addValue('Priority 100');
+    }
+}
+
+class MyMessage extends Message
+{
+    private $values = array();
+
+    public function addValue($value)
+    {
+        $this->values[] = $value;
+    }
+
+    public function getValues()
+    {
+        return $this->values;
     }
 }
 
@@ -17,17 +32,29 @@ class ExecutorTest extends \PHPUnit_Framework_TestCase
 
     public function testExecuteExecutor()
     {
-        $m = new Executor();
+        $e = new Executor();
         $c = new MyCommand();
+        $m = new MyMessage();
 
-        $m->addCommand('start', function($message, $state) {
-            var_dump('Priority 2');
+
+        $e->addCommand('start', function($message, $state) {
+            $message->addValue('Priority 2');
         },2)->addCommand('start', function($message){
-            var_dump('Priority 12');
-        },12)->addCommand('start', array($c, 'execute'), 0)
+            $message->addValue('Priority 12');
+        },12)->addCommand('start', array($c, 'execute'), 100)
         ;
 
 
-        $m->execute('start');
+        $message = $e->execute('start', $m);
+
+        $values = $message->getValues();
+
+        $this->assertTrue(is_array($values));
+
+        $this->assertEquals(3, count($values));
+
+        $this->assertEquals('Priority 100', array_shift($values));
+        $this->assertEquals('Priority 12', array_shift($values));
+        $this->assertEquals('Priority 2', array_shift($values));
     }
 }
