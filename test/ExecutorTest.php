@@ -4,6 +4,8 @@
 
 namespace Larium\Executor;
 
+use PHPUnit\Framework\TestCase;
+
 class MyCommand
 {
     public function execute($message)
@@ -27,7 +29,7 @@ class MyMessage extends Message
     }
 }
 
-class ExecutorTest extends \PHPUnit_Framework_TestCase
+class ExecutorTest extends TestCase
 {
 
     public function testExecuteExecutor()

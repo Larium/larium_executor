@@ -10,12 +10,17 @@
         }
     ],
     "require": {
-        "php": ">=5.3"
+        "php": ">=7.2"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "autoload": {
-        "psr-0": {
-            "Larium\\": "src/"
+        "psr-4": {
+            "Larium\\Executor\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Larium\\Executor\\": "test/"
         }
     }
 }
